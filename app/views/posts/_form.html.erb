@@ -1,0 +1,35 @@
+<%= form_for(@post, html: {class: 'col-sm-8 form-horizontal'}) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Author</label>
+    <div class="col-sm-4">
+      <%= f.text_field :author, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Content</label>
+    <div class="col-sm-4">
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Name</label>
+    <div class="col-sm-4">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>

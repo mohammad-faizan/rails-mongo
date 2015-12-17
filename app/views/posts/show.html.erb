@@ -1,0 +1,53 @@
+<div class="jumbotron">
+  <h1><%= @post.author %></h1>
+  <p><%= @post.content %></p>
+
+  <%= link_to 'Edit', edit_post_path(@post), class: button_class(2) %> |
+  <%= link_to 'Back', posts_path, class: button_class(1) %> | 
+  <%= link_to 'Delete Post', post_path(@post), class: button_class(4), data: {confirm: 'Are you sure ?'}, method: :delete %>
+
+  <br><br>
+  <% if @post.comments.present? %>
+    <% @post.comments.each do |comment| %>
+      <div class="well">
+        <p><%= comment.name %></p>
+        <div class="panel">
+          <div class="panel-body">
+            <%= comment.comment %>
+            <br><br>
+            <div>
+              <span class='pull-left'><%= comment.created_at %></span>
+              <div class='pull-right'>
+                <%= link_to 'delete', post_comment_path(@post.id, comment.id), data: {confirm: 'Are your sure ?'}, method: :delete %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <%= form_tag(post_comments_path(@post), {class: 'form-horizontal'}) do %>
+    <%= hidden_field_tag :post_id, @post.id, name: 'comment[post_id]' %>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Name</label>
+      <div class="col-sm-4">
+        <%= text_field_tag :name, nil, name: 'comment[name]', class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Comment</label>
+      <div class="col-sm-4">
+        <%= text_area_tag :comment, nil, name: 'comment[comment]', size: '24x6', class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label"></label>
+      <div class="col-sm-4">
+        <%= submit_tag 'Post Comment', class: 'btn btn-default' %>
+      </div>
+    </div>
+  <% end %>
+</div>

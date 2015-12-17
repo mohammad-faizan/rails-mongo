@@ -1,0 +1,19 @@
+<h2 class='text-center'>Listing posts</h2>
+<% @posts.each do |post| %>
+  <div class='jumbotron'>
+    <div class="media">
+      <div class="media-left">
+        <img src="assets/avatar.png" class='img-thumbnail' style='max-width: 160px;'>
+      </div>
+      <div class="media-body">
+        <h2><%= post.author %></h2>
+        <p><%= post.content.truncate(200, ommission: '...') %></p>        
+        <p><%= link_to 'Learn more', post_path(post), class: 'btn btn-primary btn-lg'%></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<br>
+
+<%= link_to 'New Post', new_post_path, class: button_class(1) %>
+<div class='row' style='margin-bottom: 20px;'></div>
