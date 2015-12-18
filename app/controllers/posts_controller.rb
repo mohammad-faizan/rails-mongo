@@ -24,8 +24,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      if @post.picture.present?
-        @post.picture = FileHandler.new(@post).save
+      if params[:picture].present?
+        # FileHandler.new(@post, params[:picture]).save
       end
       flash[:success] = 'Post added successfully'
     else

@@ -44,3 +44,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'mongoid'
 gem 'thin'
 gem 'byebug'
+gem "mini_magick"

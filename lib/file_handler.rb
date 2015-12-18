@@ -1,20 +1,24 @@
 class FileHandler
 
-	attr_accessor :object
+	attr_accessor :object, :stream
 
-	def initialize(object)
+	def initialize(object, stream)
 		@object = object
+		@stream = stream
 	end
 
 	def save
-		fs = Mongoid.default_client.database.fs
-    file = Mongo::Grid::File.new(object.picture.tempfile.read,
-        filename: object.picture.original_filename,
-        content_type: object.picture.content_type,
-        chunk_size: 1024
-      )
-    id = fs.insert_one(file)
-    fs.find_one(_id: id)
+		begin
+			fs = Mongoid.default_client.database.fs
+	    file = Mongo::Grid::File.new(stream.tempfile.read,
+	        filename: stream.original_filename,
+	        content_type: stream.content_type,
+	        chunk_size: 2048
+	      )
+	    self.object.create_picture(file_id: fs.insert_one(file))
+		rescue Exception => e
+			puts e.message
+		end
 	end
 
 	def update
