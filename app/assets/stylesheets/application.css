@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+.mg-top1{
+	margin-top: 10px;
+}
+
+.mg-top2{
+	margin-top: 20px;
+}
+
+.mg-bottom1{
+	margin-bottom: 10px;
+}
+
+.mg-bottom2{
+	margin-bottom: 20px;
+}

@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="container">
+    <div class="container mg-top2">
       <% if flash.present? %>
         <% flash.each do |k, v| %>
           <div class="<%= alert_class(k) %>" role="alert"><%= v %></div>
