@@ -3,16 +3,22 @@ class Picture
 	embedded_in :post
 
 	field :file_id, type: BSON::ObjectId
+	field :original, type: String
+	field :path100, type: String
+	field :path164, type: String
+	field :path180, type: String
 
-	def image
-		build_image_file
+	def url
+		"#{Rails.root}" + self.path
 	end
 
-	def build_image_file
-		data_file
+	def [](key)
+		m = key.to_s.strip
+		if respond_to?(m)
+			return self.send(key.to_s.strip)
+		else
+			return ''
+		end
 	end
 
-	def data_file
-		file = Mongoid.default_client.database.fs.find_one(_id: self.file_id)
-	end
 end

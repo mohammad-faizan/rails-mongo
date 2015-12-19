@@ -1,6 +1,11 @@
 <div class="jumbotron">
   <h1><%= @post.author %></h1>
   <p><%= @post.content %></p>
+  <% if @post.picture.present? %>
+    <div class='jumbotron'>
+      <%= image_tag(@post.picture[:path180]) %>
+    </div>
+  <% end %>
 
   <%= link_to 'Edit', edit_post_path(@post), class: button_class(2) %> |
   <%= link_to 'Back', posts_path, class: button_class(1) %> | 
