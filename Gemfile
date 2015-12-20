@@ -40,7 +40,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # gems added by developer
 # --------------------------------------------
 
-# gem 'devise'
+gem 'devise'
 gem 'mongoid'
 gem 'thin'
 gem 'byebug'
